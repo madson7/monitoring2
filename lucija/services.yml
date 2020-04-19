@@ -1,5 +1,3 @@
-DB_SERVER_HOST: localhost
-MYSQL_USER: zabbix
-MYSQL_PASSWORD: zabibx
-ZBX_SERVER_HOST: zabbix-server
-PHP_TZ: America/Bahia
+docker run --name zabbix-server-mysql -e DB_SERVER_HOST="mysql-server" -e MYSQL_USER="user" -e MYSQL_PASSWORD="12345678" -d zabbix/zabbix-server-mysql
+
+docker run --name zabbix-web-apache-mysql -e DB_SERVER_HOST="mysql-server" -e MYSQL_USER="user" -e MYSQL_PASSWORD="12345678" -e ZBX_SERVER_HOST="zabbix-server" -e PHP_TZ="America/Bahia" -d zabbix/zabbix-web-apache-mysql
