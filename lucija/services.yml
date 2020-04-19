@@ -1,0 +1,5 @@
+DB_SERVER_HOST: localhost
+MYSQL_USER: zabbix
+MYSQL_PASSWORD: zabibx
+ZBX_SERVER_HOST: zabbix-server
+PHP_TZ: America/Bahia

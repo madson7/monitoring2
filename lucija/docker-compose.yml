@@ -1,0 +1,57 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql
+    restart: always
+    volumes:
+      - db-volume:/var/lib/mysqlvolumes
+    ports:
+      - "3306:3036"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: locate
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql
+    restart: always
+    ports:
+      - "10050:10050"
+      - "10051:10051"
+    environment:
+      DB_SERVER_HOST: localhost
+      MYSQL_DATABASE: locate
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
+    depends_on:
+      - mysql
+  
+  zabbix-web:
+    image: zabbix/zabbix-web-apache-mysql
+    restart: always
+    ports:
+      - "81:80"
+    environment:
+      DB_SERVER_HOST: localhost
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabibx
+      ZBX_SERVER_HOST: zabbix-server
+      PHP_TZ: America/Bahia
+    depends_on:
+      - mysql
+      - zabbix-server
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./conf/grafana/grafana.config
+    ports:
+      - 3000:3000
+
+volumes:
+    grafana_data:
+    db-volume:
