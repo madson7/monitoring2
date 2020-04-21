@@ -1,0 +1,121 @@
+version: '3.3'
+
+services:
+
+  prometheus:
+    image: madson7/prometheus_alpine
+    volumes:
+      - ./conf/prometheus/:/etc/prometheus/
+      - prometheus_data:/var/lib/prometheus
+    networks:
+      - backend
+    ports:
+      - 9090:9090
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql
+    ports:
+      - "10051:10051"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./zbx_env/usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:ro
+      - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+      - ./zbx_env/var/lib/zabbix/export:/var/lib/zabbix/export:rw
+      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+      - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+      - ./zbx_env/var/lib/zabbix/snmptraps:/var/lib/zabbix/snmptraps:ro
+    links:
+      - mysql-server:mysql-server
+    env_file:
+      - ./conf/env/.env_db_mysql
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+    user: root
+    depends_on:
+      - mysql-server
+    networks:
+      - backend
+      - frontend
+
+  zabbix-web-apache-mysql:
+    image: zabbix/zabbix-web-apache-mysql
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - mysql-server:mysql-server
+      - zabbix-server:zabbix-server
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./zbx_env/etc/ssl/apache2:/etc/ssl/apache2:ro
+    env_file:
+      - ./conf/env/.env_db_mysql
+      - ./conf/env/.env_web
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    user: root
+    depends_on:
+      - mysql-server
+      - zabbix-server
+    networks:
+      - backend
+      - frontend
+
+  mysql-server:
+    image: mysql:8.0
+    command: [mysqld, --character-set-server=utf8, --collation-server=utf8_bin, --default-authentication-plugin=mysql_native_password]
+    volumes:
+      - ./zbx_env/var/lib/mysql:/var/lib/mysql:rw
+    env_file:
+      - ./conf/env/.env_db_mysql
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+    user: root
+    networks:
+      - backend
+      - frontend
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./conf/grafana/grafana.config
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 3000:3000
+
+  cadvisor:
+    image: google/cadvisor
+    hostname: '{{.Node.ID}}'
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - backend
+    deploy:
+      mode: global
+    ports:
+      - 8080:8080
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+    prometheus_data:
+    grafana_data:
