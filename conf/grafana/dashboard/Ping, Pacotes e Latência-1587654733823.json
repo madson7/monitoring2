@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:8624",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,32 +16,10 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 16,
-  "iteration": 1586555811619,
+  "id": 3,
+  "iteration": 1587654720595,
   "links": [],
   "panels": [
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 13,
-      "panels": [],
-      "repeat": "Instance",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
-      "title": "Estatisticas de PING $Instance",
-      "type": "row"
-    },
     {
       "cacheTimeout": null,
       "colorBackground": true,
@@ -63,8 +42,8 @@
       "gridPos": {
         "h": 5,
         "w": 5,
-        "x": 10,
-        "y": 1
+        "x": 0,
+        "y": 0
       },
       "id": 6,
       "interval": null,
@@ -94,13 +73,6 @@
           "to": "null"
         }
       ],
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
@@ -114,8 +86,8 @@
         {
           "expr": "count(ping_loss_percent{instance=\"$Instance\"})",
           "interval": "",
-          "legendFormat": "Ping, Pacotes e Latência de serviços",
-          "refId": "A"
+          "legendFormat": "",
+          "refId": "B"
         }
       ],
       "thresholds": "",
@@ -143,10 +115,120 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
+        "h": 5,
+        "w": 19,
+        "x": 5,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 400,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"150.109.27.214\"}",
+          "interval": "",
+          "legendFormat": "{{ip}}",
+          "refId": "A"
+        },
+        {
+          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"201.159.159.129\"}",
+          "interval": "",
+          "legendFormat": "{{ip}}",
+          "refId": "B"
+        },
+        {
+          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"169.57.199.205\"}",
+          "interval": "",
+          "legendFormat": "{{ip}}",
+          "refId": "C"
+        },
+        {
+          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"49.51.42.110\"}",
+          "interval": "",
+          "legendFormat": "{{ip}}",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Porcentagem de perda de ping - PUBG",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 1,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 4,
@@ -172,13 +254,6 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -270,7 +345,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 6
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 7,
@@ -298,13 +373,6 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -400,7 +468,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 13
       },
       "hiddenSeries": false,
       "id": 2,
@@ -428,13 +496,6 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -531,7 +592,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 13
       },
       "hiddenSeries": false,
       "id": 8,
@@ -559,13 +620,6 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -648,247 +702,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "decimals": 1,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 22
-      },
-      "hiddenSeries": false,
-      "id": 11,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 350,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(ping_rtt_ms{instance=\"$Instance\", target=\"169.57.199.205\"})/count(ping_rtt_ms{target=\"169.57.199.205\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "169.57.199.205",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(ping_rtt_ms{instance=\"$Instance\", target=\"150.109.27.214\"})/count(ping_rtt_ms{target=\"150.109.27.214\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "150.109.27.214",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(ping_rtt_ms{instance=\"$Instance\", target=\"49.51.42.110\"})/count(ping_rtt_ms{target=\"49.51.42.110\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "49.51.42.110",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(ping_rtt_ms{instance=\"$Instance\", target=\"201.159.159.129\"})/count(ping_rtt_ms{target=\"201.159.159.129\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "201.159.159.129",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Tempo de Ida e Volta (RTT) - Redes Sociais",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "ms",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "decimals": 1,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 22
-      },
-      "hiddenSeries": false,
-      "id": 10,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 400,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "scopedVars": {
-        "Instance": {
-          "selected": true,
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"150.109.27.214\"}",
-          "interval": "",
-          "legendFormat": "{{ip}}",
-          "refId": "A"
-        },
-        {
-          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"201.159.159.129\"}",
-          "interval": "",
-          "legendFormat": "{{ip}}",
-          "refId": "B"
-        },
-        {
-          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"169.57.199.205\"}",
-          "interval": "",
-          "legendFormat": "{{ip}}",
-          "refId": "C"
-        },
-        {
-          "expr": "ping_loss_percent{instance=\"$Instance\", ip=\"49.51.42.110\"}",
-          "interval": "",
-          "legendFormat": "{{ip}}",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Porcentagem de perda de ping - PUBG",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     }
   ],
   "refresh": "",
@@ -901,8 +714,8 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "170.82.181.4:15805",
-          "value": "170.82.181.4:15805"
+          "text": "192.168.0.7:9101",
+          "value": "192.168.0.7:9101"
         },
         "datasource": "Prometheus",
         "definition": "label_values(ping_rtt_worst_ms, instance)",
@@ -915,8 +728,8 @@
         "options": [
           {
             "selected": true,
-            "text": "170.82.181.4:15805",
-            "value": "170.82.181.4:15805"
+            "text": "192.168.0.7:9101",
+            "value": "192.168.0.7:9101"
           }
         ],
         "query": "label_values(ping_rtt_worst_ms, instance)",
@@ -956,5 +769,5 @@
   "variables": {
     "list": []
   },
-  "version": 22
+  "version": 2
 }

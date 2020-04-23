@@ -16,3 +16,30 @@ remove:
 	docker rm $(docker ps -a -q)
 	docker image rm $(docker image ls -a -q)
 	docker volume prune
+
+
+docker run --name zabbix-agent -e ZBX_HOSTNAME="coco" -e ZBX_SERVER_HOST="192.168.0.7" -d zabbix/zabbix-agent
+
+
+docker exec 71b3df5712ce
+
+
+
+wget https://repo.zabbix.com/zabbix/4.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.4-1+bionic_all.deb
+dpkg -i zabbix-release_4.4-1+bionic_all.deb
+apt update 
+
+apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent 
+
+mysql -uroot -p
+
+create database zabbix character set utf8 collate utf8_bin;
+grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+quit;
+
+zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql zabbix
+
+DBPassword=123456
+
+
+php_value date.timezone America/Bahia

@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:4859",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -16,12 +17,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 4,
   "links": [],
   "panels": [
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
+      "colorPostfix": false,
       "colorValue": false,
       "colors": [
         "#299c46",
@@ -29,8 +31,7 @@
         "#d44a3a"
       ],
       "datasource": null,
-      "decimals": 1,
-      "format": "bytes",
+      "format": "none",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -39,21 +40,23 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 8,
+        "h": 5,
         "w": 4,
         "x": 0,
         "y": 0
       },
-      "id": 29,
+      "id": 38,
       "interval": null,
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:6491",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:6492",
           "name": "range to text",
           "value": 2
         }
@@ -83,20 +86,21 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_filesystem_free_bytes{instance=~\"34.66.70.236:9101\", device=~\"/dev/.*\"})",
+          "expr": "count(count(node_cpu_seconds_total{instance=~\"192.168.0.7:9100\", mode='system'}) by (cpu))",
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Disco Livre",
+      "title": "CPU",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:6494",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -105,185 +109,12 @@
       "valueName": "avg"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 7,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 20,
-        "x": 4,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 31,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 350,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Total",
-          "color": "#1F60C4",
-          "fill": 2
-        },
-        {
-          "alias": "Root /",
-          "color": "#E02F44"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "node_filesystem_size_bytes{instance=~\"34.66.70.236:9101\", mountpoint=\"/\"} - node_filesystem_avail_bytes{instance=~\"34.66.70.236:9101\", mountpoint=\"/\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "Root {{mountpoint}}",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(node_filesystem_size_bytes{instance=~\"34.66.70.236:9101\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "Total",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Panel Title",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": null,
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 15,
-      "links": [],
-      "options": {
-        "displayMode": "gradient",
-        "fieldOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "defaults": {
-            "mappings": [],
-            "max": 10,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "dark-green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "short"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "orientation": "vertical",
-        "showUnfilled": true
-      },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "expr": "count(node_context_switches_total)",
-          "interval": "",
-          "legendFormat": "Node exporter linux",
-          "refId": "A"
-        },
-        {
-          "expr": "count(mikrotik_system_uptime)",
-          "interval": "",
-          "legendFormat": "Node exporter mikrotik",
-          "refId": "B"
-        },
-        {
-          "expr": "count(ping_loss_percent)",
-          "interval": "",
-          "legendFormat": "Ping, Pacotes e Latência de serviços",
-          "refId": "C"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Total de node exporter's",
-      "type": "bargauge"
-    },
-    {
       "datasource": null,
       "gridPos": {
         "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 14
+        "w": 20,
+        "x": 4,
+        "y": 0
       },
       "id": 19,
       "options": {
@@ -326,32 +157,18 @@
       "repeat": null,
       "targets": [
         {
-          "expr": "(((count(count(node_cpu_seconds_total{instance=\"34.66.70.236:9101\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"34.66.70.236:9101\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=\"34.66.70.236:9101\"}) by (cpu))",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.0.7:9100\",mode=\"idle\"}[1m])) * 100)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{34.66.70.236:9101}}",
+          "legendFormat": "{{192.168.0.7:9100}}(Não esta dinâmico)",
           "refId": "A"
         },
         {
-          "expr": "(((count(count(node_cpu_seconds_total{instance=\"170.82.181.4:15807\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"170.82.181.4:15807\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=\"170.82.181.4:15807\"}) by (cpu))",
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"192.168.0.7:9150\",mode=\"idle\"}[1m])) * 100)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{170.82.181.4:15807}}",
+          "legendFormat": "{{192.168.0.7:9150}}(Não esta dinâmico)",
           "refId": "B"
-        },
-        {
-          "expr": "(((count(count(node_cpu_seconds_total{instance=\"170.82.181.4:15806\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"170.82.181.4:15806\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=\"170.82.181.4:15806\"}) by (cpu))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{170.82.181.4:15806}}",
-          "refId": "C"
-        },
-        {
-          "expr": "mikrotik_system_cpu_load{address=\"192.168.0.10\",boardname=\"x86\",instance=\"170.82.181.4:15808\",job=\"consul-services\",version=\"6.43.1 (stable)\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "D"
         }
       ],
       "timeFrom": null,
@@ -372,7 +189,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 13,
@@ -404,13 +221,6 @@
       "stack": false,
       "steppedLine": false,
       "targets": [
-        {
-          "expr": "mikrotik_system_total_memory-(mikrotik_system_total_memory-mikrotik_system_free_memory)",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        },
         {
           "expr": "node_memory_MemTotal_bytes-(node_memory_MemTotal_bytes-node_memory_MemFree_bytes)",
           "hide": false,
@@ -465,6 +275,162 @@
       "cacheTimeout": null,
       "colorBackground": true,
       "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 11
+      },
+      "id": 37,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:6491",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:6492",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "count(node_context_switches_total)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total de Node exporter linux",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:6494",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 5,
+        "w": 20,
+        "x": 4,
+        "y": 11
+      },
+      "id": 35,
+      "links": [],
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "$$hashKey": "object:9014",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "dark-yellow",
+                  "value": 80
+                },
+                {
+                  "color": "dark-red",
+                  "value": 90
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.7.2",
+      "targets": [
+        {
+          "expr": "(1-(node_filesystem_free_bytes{fstype=~\"ext4|xfs\"} / node_filesystem_size_bytes{fstype=~\"ext4|xfs\"}))*100",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Espaço em uso",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
@@ -485,7 +451,7 @@
         "h": 5,
         "w": 4,
         "x": 0,
-        "y": 25
+        "y": 16
       },
       "id": 20,
       "interval": null,
@@ -554,7 +520,7 @@
         "h": 5,
         "w": 20,
         "x": 4,
-        "y": 25
+        "y": 16
       },
       "id": 17,
       "options": {
@@ -596,7 +562,7 @@
       "pluginVersion": "6.7.2",
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{instance=\"34.66.70.236:8080\",image!=\"\"}[5m]) * 100",
+          "expr": "rate(container_cpu_user_seconds_total{instance=\"10.0.1.8:8080\",image!=\"\"}[5m]) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "{{container_label_com_docker_swarm_service_name}}",
@@ -621,7 +587,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 21
       },
       "hiddenSeries": false,
       "id": 21,
@@ -652,7 +618,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{instance=\"34.66.70.236:8080\",image!=\"\"}",
+          "expr": "container_memory_usage_bytes{instance=\"10.0.20.12:8080\",image!=\"\"}",
           "interval": "",
           "legendFormat": "{{container_label_com_docker_swarm_service_name}}",
           "refId": "A"
@@ -699,6 +665,116 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "height": "300",
+      "hiddenSeries": false,
+      "id": 40,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"192.168.0.7:9100\",device!~'tap.*|veth.*|br.*|docker.*|virbr*|lo*'}[5m])*8",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{device}} - Download",
+          "refId": "A",
+          "step": 4
+        },
+        {
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"192.168.0.7:9100\",device!~'tap.*|veth.*|br.*|docker.*|virbr*|lo*'}[5m])*8",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{device}} - Upload",
+          "refId": "B",
+          "step": 4
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Tráfego de rede",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:143",
+          "format": "bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:144",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "5s",
@@ -733,5 +809,5 @@
   "variables": {
     "list": []
   },
-  "version": 11
+  "version": 8
 }

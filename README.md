@@ -57,7 +57,8 @@ Status dos serviços
  
 Iniciar o Node do Mikrotik
 ```
-# ./conf/node-exporter/exporter_mikrotik -address 192.168.0.10 -device "Mikrotik 01" -password 12345678 -user prometheus
+# ./conf/node-exporter/exporter_mikrotik -address 192.168.0.10 \
+-device "Mikrotik 01" -password 12345678 -user prometheus
 ```
 Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik, porta padrão 9436
  
@@ -69,6 +70,7 @@ Onde --web.listen-address=":9100" é a porta do seu servidor Linux local.
  
 Iniciar o Ping Exporter
 ```
-# ./conf/node-exporter/ping/exporter_ping --config.path conf/node-exporter/ping/ping.yml --web.listen-address=":9101"
+# ./conf/node-exporter/ping/exporter_ping --config.path \
+conf/node-exporter/ping/ping.yml --web.listen-address=":9101"
 ```
 Onde --web.listen-address=":9101" é a porta do seu servidor Linux local e --config.path são os IP's e sites.
