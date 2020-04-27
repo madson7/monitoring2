@@ -2,16 +2,6 @@ version: '3.3'
 
 services:
 
-  prometheus:
-    image: madson7/prometheus_alpine
-    volumes:
-      - ./conf/prometheus/:/etc/prometheus/
-      - prometheus_data:/var/lib/prometheus
-    networks:
-      - backend
-    ports:
-      - 9090:9090
-
   grafana:
     image: grafana/grafana
     depends_on:
@@ -20,9 +10,6 @@ services:
       - grafana_data:/var/lib/grafana
     env_file:
       - ./conf/grafana/grafana.config
-    networks:
-      - backend
-      - frontend
     ports:
       - 3000:3000
 
@@ -35,17 +22,36 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - backend
     deploy:
       mode: global
     ports:
       - 8080:8080
 
-networks:
-  frontend:
-  backend:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    entrypoint: ['/entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+    environment:
+      MYSQL_DATABASE: 'locate'
+      MYSQL_USER: 'world'
+      MYSQL_PASSWORD: 'world'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - db-volume:/var/lib/mysql
+
+  prometheus:
+    image: madson7/prometheus_alpine
+    volumes:
+      - ./conf/prometheus/:/etc/prometheus/
+      - prometheus_data:/var/lib/prometheus
+    ports:
+      - 9090:9090
 
 volumes:
     prometheus_data:
     grafana_data:
+    db-volume:
