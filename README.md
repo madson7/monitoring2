@@ -1,26 +1,32 @@
 # Monitoring2
  
 ![](img/schema.png)
- 
-Ferramentas de monitoramento de hosts, containers e serviços
- 
+
+Este repositorio utilizar algumas ferramentas de monitoramento de forma modular para colher metricas e logs de rede, hosts, containers e aplicações.
+
+Não irei abordar teoría e conceitos para isso utilize a documentação oficial.
+
 - Docker (Swarm)
 - Cadvisor
 - Grafana
-- MariaDB
+- Mysql
 - Prometheus (Node_Exporter's)
 - Zabbix (Zabbix serve, Zabbix agents e SNMP)
-- Elastic (Elasticsearch, Kibana e Metricbeat)
+- Elastic (Elasticsearch, Kibana, Logstash e Metricbeat)
  
 Infraestrutura
 
 - Servidor Linux
 - Mikrotik
- 
+
 Instalação do Docker e iniciando o cluster Swarm
+
+![](img/swarm.gif)
+
 ```
 # curl -fsSL https://get.docker.com | sh
 # docker swarm init
+# docker swarm join --token
 ```
  
 Clonado o repositório monitoring2
