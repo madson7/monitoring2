@@ -2,9 +2,9 @@
  
 ![](img/schema.png)
 
-Este repositorio utilizar algumas ferramentas de monitoramento de forma modular para colher metricas e logs de rede, hosts, containers e aplicações.
-
-Não irei abordar teoría e conceitos para isso utilize a documentação oficial.
+Este repositório utilizar algumas ferramentas de monitoramento de forma modular para colher métricas e logs de rede, hosts, containers e aplicações.
+ 
+Não irei abordar teoria e conceitos para isso utilize a documentação oficial.
 
 - Docker (Swarm)
 - Cadvisor
