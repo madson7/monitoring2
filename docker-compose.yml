@@ -7,11 +7,19 @@ services:
     depends_on:
       - prometheus
     volumes:
-      - grafana_data:/var/lib/grafana
+      - data_grafana:/var/lib/grafana
     env_file:
       - ./conf/grafana/grafana.config
     ports:
       - 3000:3000
+  
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./conf/prometheus/:/etc/prometheus/
+      - data_prometheus:/var/lib/prometheus
+    ports:
+      - 9090:9090
 
   cadvisor:
     image: google/cadvisor
@@ -41,17 +49,9 @@ services:
     expose:
       - '3306'
     volumes:
-      - db-volume:/var/lib/mysql
-
-  prometheus:
-    image: madson7/prometheus_alpine
-    volumes:
-      - ./conf/prometheus/:/etc/prometheus/
-      - prometheus_data:/var/lib/prometheus
-    ports:
-      - 9090:9090
+      - data_db:/var/lib/mysql
 
 volumes:
-    prometheus_data:
-    grafana_data:
-    db-volume:
+    data_prometheus:
+    data_grafana:
+    data_db:

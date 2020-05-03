@@ -4,11 +4,13 @@
  
 Ferramentas de monitoramento de hosts, containers e serviços
  
-- Docker
+- Docker (Swarm)
+- Cadvisor
 - Grafana
 - MariaDB
-- Prometheus (Node_Exporter's e Cadvisor)
-- Zabbix (Zabbix agents e SNMP)
+- Prometheus (Node_Exporter's)
+- Zabbix (Zabbix serve, Zabbix agents e SNMP)
+- Elastic (Elasticsearch, Kibana e Metricbeat)
  
 Infraestrutura
 
@@ -27,20 +29,12 @@ Clonado o repositório monitoring2
  
 # cd monitoring2
 ```
- 
-Build da imagem do Promotheus
-```
-# docker build -t madson7/prometheus_alpine ./dockerfiles/prometheus
-```
+
 Deploy Stack com Docker Swarm
 ```
 # docker stack deploy -c docker-compose.ym monitoring2
 ```
- 
-Status dos serviços
-```
-# docker service ls
-```
+
 Configurando o banco SQL
 ```
 mysql -uroot -h192.168.0.7 -p < ./conf/mysql/datadb.sql

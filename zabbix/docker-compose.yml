@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+    zabbix-serve:
+        image: 
+        container_name: 
+        environment:
+            - 
+        ports:
+            - 
+
+    zabbix-agent:
+        image: zabbix/zabbix-agent
+        container_name: zabbix-agent
+        environment:
+            - ZBX_HOSTNAME="agent"
+            - ZBX_SERVER_HOST="192.168.0.7"

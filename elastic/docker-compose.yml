@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+        container_name: elasticsearch
+        environment:
+            - discovery.type=single-node
+            - xpack.security.enabled=true
+            - ELASTIC_USERNAME=elastic
+            - ELASTIC_PASSWORD=elastic
+        ports:
+            - 9200:9200
+            - 9300:9300
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:7.6.2
+        container_name: kibana
+        environment:
+            - xpack.security.enabled=true
+            - ELASTICSEARCH_USERNAME=elastic
+            - ELASTICSEARCH_PASSWORD=elastic
+        ports:
+            - 5601:5601
+        links: 
+            - elasticsearch:elasticsearch
+
+    metricbeat:
+        image: docker.elastic.co/beats/metricbeat:7.6.2
+        user: root
+        command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+        depends_on: 
+            - elasticsearch
+        environment:
+            - ELASTICSEARCH_HOST=elasticsearch
+            - KIBANA_HOST=kibana
+            - ELASTICSEARCH_USERNAME=elastic
+            - ELASTICSEARCH_PASSWORD=elastic
+        volumes:
+            - ./conf/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+            #- /var/run/docker.sock:/var/run/docker.sock:ro
+            #- /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+            #- /proc:/hostfs/proc:ro
+            #- /:/hostfs:ro

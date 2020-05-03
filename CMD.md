@@ -1,27 +1,30 @@
-# comandos aleatorioas
-init:
+# init
 	docker swarm init
-
-build:
-	docker build -t madson7/prometheus_alpine ./dockerfiles/prometheus
-
-start:
+# start
 	docker stack deploy -c docker-compose.yml discovery
-
-service:
+# service
 	docker service ls
-
-remove:
+	docker ps
+	docker exec ID
+# remove
 	docker stack rm discovery
 	docker rm $(docker ps -a -q)
 	docker image rm $(docker image ls -a -q)
 	docker volume prune
 
+# (gera script)
+./metricbeat modules enable prometheus
+./metricbeat setup
+./metricbeat -e
 
-docker run --name zabbix-agent -e ZBX_HOSTNAME="coco" -e ZBX_SERVER_HOST="192.168.0.7" -d zabbix/zabbix-agent
 
 
-docker exec 71b3df5712ce
+
+
+
+
+
+
 
 
 
@@ -40,6 +43,5 @@ quit;
 zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql zabbix
 
 DBPassword=123456
-
 
 php_value date.timezone America/Bahia
