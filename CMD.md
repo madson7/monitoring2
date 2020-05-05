@@ -13,6 +13,7 @@
 	docker volume prune
 
 # (gera script)
+docker exec -it <ID> /bin/bash
 ./metricbeat modules enable prometheus
 ./metricbeat setup
 ./metricbeat -e

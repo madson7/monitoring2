@@ -1,0 +1,553 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:4642",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 8,
+  "iteration": 1588639548410,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Elasticsearch",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "ping_rtt_best_ms",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:31697",
+              "fake": true,
+              "field": "prometheus.labels.target",
+              "id": "7",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "$$hashKey": "object:7182",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:7180",
+              "field": "prometheus.metrics.ping_rtt_best_ms",
+              "id": "1",
+              "meta": {},
+              "pipelineAgg": "select metric",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "prometheus.labels.target:$target",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "ping_rtt_mean_ms",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:31697",
+              "fake": true,
+              "field": "prometheus.labels.target",
+              "id": "7",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "$$hashKey": "object:7182",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:7180",
+              "field": "prometheus.metrics.ping_rtt_mean_ms",
+              "id": "1",
+              "meta": {},
+              "pipelineAgg": "select metric",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "prometheus.labels.target:$target",
+          "refId": "B",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "ping_rtt_std_deviation_ms",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:31697",
+              "fake": true,
+              "field": "prometheus.labels.target",
+              "id": "7",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "$$hashKey": "object:7182",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:7180",
+              "field": "prometheus.metrics.ping_rtt_std_deviation_ms",
+              "id": "1",
+              "meta": {},
+              "pipelineAgg": "select metric",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "prometheus.labels.target:$target",
+          "refId": "C",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "ping_rtt_worst_ms",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:31697",
+              "fake": true,
+              "field": "prometheus.labels.target",
+              "id": "7",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "$$hashKey": "object:7182",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:7180",
+              "field": "prometheus.metrics.ping_rtt_worst_ms",
+              "id": "1",
+              "meta": {},
+              "pipelineAgg": "select metric",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "prometheus.labels.target:$target",
+          "refId": "D",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$target",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:9330",
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:9331",
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "169.46.82.162",
+          "value": "169.46.82.162"
+        },
+        "datasource": "Elasticsearch",
+        "definition": "{\"find\": \"terms\", \"field\": \"prometheus.labels.target\"}",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": null,
+        "multi": false,
+        "name": "target",
+        "options": [
+          {
+            "$$hashKey": "object:30470",
+            "selected": false,
+            "text": "104.104.153.143",
+            "value": "104.104.153.143"
+          },
+          {
+            "$$hashKey": "object:30471",
+            "selected": false,
+            "text": "128.1.75.130",
+            "value": "128.1.75.130"
+          },
+          {
+            "$$hashKey": "object:30472",
+            "selected": false,
+            "text": "143.92.125.225",
+            "value": "143.92.125.225"
+          },
+          {
+            "$$hashKey": "object:30473",
+            "selected": false,
+            "text": "143.92.126.168",
+            "value": "143.92.126.168"
+          },
+          {
+            "$$hashKey": "object:30474",
+            "selected": false,
+            "text": "143.92.126.67",
+            "value": "143.92.126.67"
+          },
+          {
+            "$$hashKey": "object:30475",
+            "selected": false,
+            "text": "150.109.27.214",
+            "value": "150.109.27.214"
+          },
+          {
+            "$$hashKey": "object:30476",
+            "selected": false,
+            "text": "155.133.249.197",
+            "value": "155.133.249.197"
+          },
+          {
+            "$$hashKey": "object:30477",
+            "selected": false,
+            "text": "157.240.222.61",
+            "value": "157.240.222.61"
+          },
+          {
+            "$$hashKey": "object:30478",
+            "selected": false,
+            "text": "162.159.136.234",
+            "value": "162.159.136.234"
+          },
+          {
+            "$$hashKey": "object:30479",
+            "selected": false,
+            "text": "162.254.195.67",
+            "value": "162.254.195.67"
+          },
+          {
+            "$$hashKey": "object:30480",
+            "selected": true,
+            "text": "169.46.82.162",
+            "value": "169.46.82.162"
+          },
+          {
+            "$$hashKey": "object:30481",
+            "selected": false,
+            "text": "169.57.181.176",
+            "value": "169.57.181.176"
+          },
+          {
+            "$$hashKey": "object:30482",
+            "selected": false,
+            "text": "169.57.181.177",
+            "value": "169.57.181.177"
+          },
+          {
+            "$$hashKey": "object:30483",
+            "selected": false,
+            "text": "169.57.199.205",
+            "value": "169.57.199.205"
+          },
+          {
+            "$$hashKey": "object:30484",
+            "selected": false,
+            "text": "189.6.45.8",
+            "value": "189.6.45.8"
+          },
+          {
+            "$$hashKey": "object:30485",
+            "selected": false,
+            "text": "192.221.253.120",
+            "value": "192.221.253.120"
+          },
+          {
+            "$$hashKey": "object:30486",
+            "selected": false,
+            "text": "200.157.208.248",
+            "value": "200.157.208.248"
+          },
+          {
+            "$$hashKey": "object:30487",
+            "selected": false,
+            "text": "201.159.159.129",
+            "value": "201.159.159.129"
+          },
+          {
+            "$$hashKey": "object:30488",
+            "selected": false,
+            "text": "204.154.111.122",
+            "value": "204.154.111.122"
+          },
+          {
+            "$$hashKey": "object:30489",
+            "selected": false,
+            "text": "205.185.194.196",
+            "value": "205.185.194.196"
+          },
+          {
+            "$$hashKey": "object:30516",
+            "selected": false,
+            "text": "205.185.194.213",
+            "value": "205.185.194.213"
+          },
+          {
+            "$$hashKey": "object:30517",
+            "selected": false,
+            "text": "23.65.134.160",
+            "value": "23.65.134.160"
+          },
+          {
+            "$$hashKey": "object:30518",
+            "selected": false,
+            "text": "49.51.42.110",
+            "value": "49.51.42.110"
+          },
+          {
+            "$$hashKey": "object:30519",
+            "selected": false,
+            "text": "blogger.com",
+            "value": "blogger.com"
+          },
+          {
+            "$$hashKey": "object:30520",
+            "selected": false,
+            "text": "docs.google.com",
+            "value": "docs.google.com"
+          },
+          {
+            "$$hashKey": "object:30521",
+            "selected": false,
+            "text": "drive.google.com",
+            "value": "drive.google.com"
+          },
+          {
+            "$$hashKey": "object:30522",
+            "selected": false,
+            "text": "facebook.com",
+            "value": "facebook.com"
+          },
+          {
+            "$$hashKey": "object:30523",
+            "selected": false,
+            "text": "instagram.com",
+            "value": "instagram.com"
+          },
+          {
+            "$$hashKey": "object:30524",
+            "selected": false,
+            "text": "linkedin.com",
+            "value": "linkedin.com"
+          },
+          {
+            "$$hashKey": "object:30525",
+            "selected": false,
+            "text": "mail.google.com",
+            "value": "mail.google.com"
+          },
+          {
+            "$$hashKey": "object:30526",
+            "selected": false,
+            "text": "photos.google.com",
+            "value": "photos.google.com"
+          },
+          {
+            "$$hashKey": "object:30527",
+            "selected": false,
+            "text": "twitter.com",
+            "value": "twitter.com"
+          },
+          {
+            "$$hashKey": "object:30528",
+            "selected": false,
+            "text": "whatsapp.com",
+            "value": "whatsapp.com"
+          },
+          {
+            "$$hashKey": "object:30529",
+            "selected": false,
+            "text": "youtube.com",
+            "value": "youtube.com"
+          }
+        ],
+        "query": "{\"find\": \"terms\", \"field\": \"prometheus.labels.target\"}",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Elasticsearch - Ping, Pacotes e Latência",
+  "uid": "oOals-eWk",
+  "variables": {
+    "list": []
+  },
+  "version": 9
+}

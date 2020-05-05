@@ -63,3 +63,8 @@ Iniciar o Ping Exporter
 # ./conf/node-exporter/ping/exporter_ping --config.path conf/node-exporter/ping/ping.yml --web.listen-address=":9101"
 ```
 Onde --web.listen-address=":9101" é a porta do seu servidor Linux local e --config.path são os IP's e sites.
+
+
+- [x] teste
+- [ ] teste
+[ ]
