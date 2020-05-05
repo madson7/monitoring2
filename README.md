@@ -43,7 +43,7 @@ Deploy Stack com Docker Swarm
 
 Configurando o banco SQL
 ```
-mysql -uroot -h192.168.0.7 -p < ./conf/mysql/datadb.sql
+mysql -uroot -h192.168.0.7 -p < ./zabbix/conf/mysql/datadb.sql
 ```
  
 Iniciar o Node do Mikrotik
@@ -68,3 +68,4 @@ Onde --web.listen-address=":9101" é a porta do seu servidor Linux local e --con
     - [x] Cadvisor, Grafana e Prometheus
     - [ ] Zabbix e Mysql
     - [x] Elasticsearch, Kibana e Metricbeat
+- [ ] README

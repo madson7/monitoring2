@@ -16,3 +16,20 @@ services:
         environment:
             - ZBX_HOSTNAME="agent"
             - ZBX_SERVER_HOST="192.168.0.7"
+
+    mysql:
+        image: mysql:5.7
+        restart: always
+        entrypoint: ['/entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+        environment:
+            MYSQL_DATABASE: 'locate'
+            MYSQL_USER: 'world'
+            MYSQL_PASSWORD: 'world'
+            MYSQL_ROOT_PASSWORD: 'root'
+        ports:
+            - '3306:3306'
+        volumes:
+            - data_db:/var/lib/mysql
+
+volumes:
+    data_db:
