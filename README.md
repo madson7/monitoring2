@@ -12,7 +12,7 @@ Não irei abordar teoria e conceitos, para isso utilize a documentação oficial
 - Mysql
 - Prometheus (Node_Exporter's)
 - Zabbix (Zabbix serve, Zabbix agents e SNMP)
-- Elastic (Elasticsearch, Kibana, Logstash e Metricbeat)
+- Elastic (Elasticsearch, Kibana e Metricbeat)
  
 Infraestrutura
 
@@ -64,7 +64,7 @@ Iniciar o Ping Exporter
 ```
 Onde --web.listen-address=":9101" é a porta do seu servidor Linux local e --config.path são os IP's e sites.
 
-
-- [x] teste
-- [ ] teste
-[ ]
+- [] Docker (Swarm)
+    - [x] Cadvisor, Grafana e Prometheus
+    - [] Zabbix e Mysql
+    - [x] Elasticsearch, Kibana e Metricbeat
